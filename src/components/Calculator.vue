@@ -103,12 +103,12 @@
 </template>
 
 <script>
-const apiKey = "65A1C09F-1EE2-4DA0-AA42-80BF4138FDDD";
-// const apiKey2 = "C0B497A4-55D8-43A5-BA2E-BB06747C35E0";
+// const apiKey = "65A1C09F-1EE2-4DA0-AA42-80BF4138FDDD";
+const apiKey2 = "C0B497A4-55D8-43A5-BA2E-BB06747C35E0";
 export default {
   data() {
     return {
-      apiKey: apiKey,
+      apiKey: apiKey2,
       apiLimit: 100,
       amount: "",
       coindata: {},
@@ -139,13 +139,14 @@ export default {
         .catch((err) => {
           console.log(err);
           if (err.status === 429) {
+            this.$emit('apiStatus',err.status)
             this.$router.push({name:"customData"});
           }
         });
     },
   },
   created() {
-    this.apiCall();
+    // this.apiCall();
   },
 };
 </script>

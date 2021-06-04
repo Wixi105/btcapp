@@ -5,7 +5,7 @@
       <ul class="flex justify-center">
         <li>
           <router-link to="/"
-            ><h3 class="text-white border border-white p-1 rounded-md hover:bg-gray-50 hover:text-primary">Calculator</h3></router-link
+            v-if='apistat != 429'><h3 class="text-white border border-white p-1 rounded-md hover:bg-gray-50 hover:text-primary">Calculator</h3></router-link
           >
         </li>
         <li>
@@ -21,6 +21,16 @@
 
 <script>
 export default {
-  data() {},
+
+  props: {
+    apiStatus:{
+      type:Number,
+    }
+  },
+  data() {
+    return {
+      apistat:this.apiStatus,
+    }
+  },
 };
 </script>
