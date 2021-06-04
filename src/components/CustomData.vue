@@ -5,6 +5,12 @@
         id="app-body"
         class="font-body p-6 text-center border border-primary m-2 md:m-6 md:w-2/3 rounded-md"
       >
+        <p class="text-gray-400 text-sm mb-2">
+          This version does not have access to data so you would have to input
+          the values yourself. Sorry for the inconvenience I have reached the
+          request limit on the API that gives me data. You can try again in 24
+          hours and you might get access to the version with live data
+        </p>
         <section id="header">
           <img
             src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=010"
@@ -42,7 +48,7 @@
                 class="border py-2 px-3 w-72 mx-auto"
                 type="text"
                 v-model.number="old_price"
-                placeholder='30000'
+                placeholder="30000"
                 number
               />
             </div>
@@ -56,12 +62,16 @@
                 class="border py-2 px-3 w-72 mx-auto"
                 type="text"
                 v-model.number="current_price"
-                                placeholder='30000'
-
+                placeholder="30000"
                 number
               />
             </div>
-            <button @click.prevent="calculate" class="bg-primary hover:bg-green-500 text-white font-bold py-2 px-4 rounded">Calculate</button>
+            <button
+              @click.prevent="calculate"
+              class="bg-primary hover:bg-green-500 text-white font-bold py-2 px-4 rounded"
+            >
+              Calculate
+            </button>
           </form>
         </section>
 
@@ -69,11 +79,11 @@
           <p class="py-4" v-if="amount">
             If you had bought
             <span class="text-primary font-bold">{{ amount }} USD</span> worth
-            of Bitcoin at <span class="text-primary font-bold">{{old_price}} USD</span> , you would have had
+            of Bitcoin at
+            <span class="text-primary font-bold">{{ old_price }} USD</span> ,
+            you would have had
             <span class="text-primary font-bold">
-              {{
-                result
-              }}
+              {{ result }}
               USD
             </span>
             in profit today.
@@ -88,30 +98,26 @@
 // import Calculator from './components/Calculator'
 export default {
   data() {
-      return {
-          amount:'',
-          old_price:'',
-          current_price:'',
-          result:'',
-          bool:false,
-      }
+    return {
+      amount: "",
+      old_price: "",
+      current_price: "",
+      result: "",
+      bool: false,
+    };
   },
   computed: {},
   methods: {
-   calculate() {
-     let result =  
-                  ((((this.current_price -
-                    this.old_price) /
-                   this.old_price) *
-                    100) /
-                    100) *
-                  this.amount
-        this.result = result.toFixed(4);
-        this.bool = true;
-   }
+    calculate() {
+      let result =
+        ((((this.current_price - this.old_price) / this.old_price) * 100) /
+          100) *
+        this.amount;
+      this.result = result.toFixed(4);
+      this.bool = true;
+    },
   },
-  components:{
-  }
+  components: {},
 };
 </script>
   
