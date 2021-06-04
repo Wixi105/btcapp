@@ -42,7 +42,7 @@
               <label
                 for=""
                 class="mb-2 uppercase font-bold text-lg text-grey-darkest"
-                >Price when you wanted to buy:</label
+                >Price (of BTC) when you wanted to buy:</label
               >
               <input
                 class="border py-2 px-3 w-72 mx-auto"
@@ -86,7 +86,7 @@
               {{ result }}
               USD
             </span>
-             {{result>0?'in profit today.':''}} 
+             {{result>0?'in profit today.':''}} at the price of <span class="text-primary font-bold">{{current_price}} USD</span>
           </p>
         </section>
       </main>

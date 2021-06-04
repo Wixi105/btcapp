@@ -49,7 +49,6 @@
               />
             </div>
           </form>
-  
         </section>
 
         <section id="data-view" v-if="coindata">
@@ -104,18 +103,18 @@
 </template>
 
 <script>
-// const apiKey = "65A1C09F-1EE2-4DA0-AA42-80BF4138FDDD";
-const apiKey2 = "C0B497A4-55D8-43A5-BA2E-BB06747C35E0";
+const apiKey = "65A1C09F-1EE2-4DA0-AA42-80BF4138FDDD";
+// const apiKey2 = "C0B497A4-55D8-43A5-BA2E-BB06747C35E0";
 export default {
   data() {
     return {
-      apiKey: apiKey2,
+      apiKey: apiKey,
       apiLimit: 100,
       amount: "",
       coindata: {},
       date: "2016-06-02",
       date_current: new Date().toISOString().substr(0, 10),
-      truth:true,
+      truth: true,
     };
   },
   computed: {},
@@ -139,11 +138,14 @@ export default {
         })
         .catch((err) => {
           console.log(err);
+          if (err.status === 429) {
+            this.$router.push({name:"customData"});
+          }
         });
     },
   },
   created() {
-    // this.apiCall();
+    this.apiCall();
   },
 };
 </script>

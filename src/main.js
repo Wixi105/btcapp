@@ -14,7 +14,7 @@ Vue.use(VueResource)
 
 const routes = [
   {path:'/', component:Calculator},
-  {path:'/customdata',component:CustomData},
+  {path:'/customdata',component:CustomData,name:'customData'},
   
 ]
 
