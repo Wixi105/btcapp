@@ -49,6 +49,7 @@
               />
             </div>
           </form>
+  
         </section>
 
         <section id="data-view" v-if="coindata">
@@ -114,6 +115,7 @@ export default {
       coindata: {},
       date: "2016-06-02",
       date_current: new Date().toISOString().substr(0, 10),
+      truth:true,
     };
   },
   computed: {},

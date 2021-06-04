@@ -81,12 +81,12 @@
             <span class="text-primary font-bold">{{ amount }} USD</span> worth
             of Bitcoin at
             <span class="text-primary font-bold">{{ old_price }} USD</span> ,
-            you would have had
+            you would have {{result>0?'had':'lost'}}
             <span class="text-primary font-bold">
               {{ result }}
               USD
             </span>
-            in profit today.
+             {{result>0?'in profit today.':''}} 
           </p>
         </section>
       </main>
