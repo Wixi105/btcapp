@@ -2,14 +2,14 @@
   <div id="app">
       <Navbar v-on:apiStatus='updateAPIStatus($event)'/>
       <router-view></router-view>
-      <Footer/>
+      <!-- <Footer/> -->
 
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+// import Footer from './components/Footer'
 export default {
   data(){
     return{
@@ -23,7 +23,7 @@ export default {
   },
   components: {
     Navbar,
-    Footer,
+    // Footer,
   }
 }
 </script>
