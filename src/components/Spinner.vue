@@ -1,5 +1,5 @@
 <template>
-  <div class="spin" v-if="start">
+  <div class="spin">
     <div class="ring">
       <div class="lds-heart"><div></div></div>
     </div>

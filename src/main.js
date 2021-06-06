@@ -13,18 +13,18 @@ Vue.use(VueRouter)
 Vue.use(VueResource)
 
 const routes = [
-  {path:'/', component:Calculator},
-  {path:'/customdata',component:CustomData,name:'customData'},
-  
+  { path: '/', component: Calculator , name:'home'},
+  { path: '/customdata', component: CustomData, name: 'customData', props: true },
+
 ]
 
 const router = new VueRouter({
   routes,
-  mode:'history',
+  mode: 'history',
 })
 
 
 new Vue({
   render: h => h(App),
-  router:router,
+  router: router,
 }).$mount('#app')
