@@ -5,7 +5,7 @@
         id="app-body"
         class="font-body p-6 text-center border border-primary m-2 md:m-6 md:w-2/3 rounded-md"
       >
-        <section id="form" v-if="truth">
+        <section id="form">
           <img
             src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=010"
             alt="bitcoin logo"
@@ -114,7 +114,6 @@ export default {
       coindata: {},
       date: "2016-06-02",
       date_current: new Date().toISOString().substr(0, 10),
-      truth: true,
     };
   },
   computed: {},
