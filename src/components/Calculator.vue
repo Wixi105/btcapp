@@ -1,5 +1,6 @@
 <template>
   <div id="root">
+
     <div class="flex justify-center">
       <main
         id="app-body"
@@ -27,7 +28,7 @@
                 class="border py-2 px-3 w-72 mx-auto"
                 type="text"
                 placeholder="200"
-                v-model.number="amount"
+                v-model.number="internalAmount"
                 @input.once="apiCall"
                 number
               />
@@ -42,48 +43,48 @@
               <input
                 class="border py-2 px-3 w-72 mx-auto"
                 type="date"
-                v-model="date"
+                v-model="internalDate"
                 @input="apiCall"
                 min="2011-09-01"
-                :max="date_current"
+                :max="internalDateCurrent"
               />
             </div>
           </form>
         </section>
 
-        <section id="data-view" v-if="coindata">
+        <section id="data-view" v-if="internalCoinData">
           <p class="py-4">
             The price of bitcoin, on
-            <span class="text-primary font-bold">{{ date }}</span>
-            {{ date == date_current ? "is" : "was" }} (USD) :
-            {{ coindata[0].price_close }}
+            <span class="text-primary font-bold">{{ internalDate }}</span>
+            {{ internalDate == internalDateCurrent ? "is" : "was" }} (USD) :
+            {{ internalCoinData[0].price_close }}
           </p>
           <p class="py-4">
             On this day, Bitcoin opened at
             <span class="text-primary font-bold"
-              >{{ coindata[0].price_open }} USD</span
+              >{{ internalCoinData[0].price_open }} USD</span
             >, reached a high of
             <span class="text-primary font-bold"
-              >{{ coindata[0].price_high }} USD</span
+              >{{ internalCoinData[0].price_high }} USD</span
             >
             and closed at
             <span class="text-primary font-bold"
-              >{{ coindata[0].price_close }} USD</span
+              >{{ internalCoinData[0].price_close }} USD</span
             >
           </p>
-          <p class="py-4" v-if="amount">
+          <p class="py-4" v-if="internalAmount">
             If you had bought
-            <span class="text-primary font-bold">{{ amount }} USD</span> worth
+            <span class="text-primary font-bold">{{ internalAmount }} USD</span> worth
             of Bitcoin at this time, you would have had
             <span class="text-primary font-bold">
               {{
                 (
-                  ((((coindata[coindata.length - 1].price_close -
-                    coindata[0].price_close) /
-                    coindata[0].price_close) *
+                  ((((internalCoinData[internalCoinData.length - 1].price_close -
+                    internalCoinData[0].price_close) /
+                    internalCoinData[0].price_close) *
                     100) /
                     100) *
-                  amount
+                  internalAmount
                 ).toFixed(4)
               }}
               USD
@@ -93,7 +94,7 @@
           <p class="py-4">
             The current price of Bitcoin is
             <span class="text-primary font-bold"
-              >{{ coindata[coindata.length - 1].price_close }} USD
+              >{{ internalCoinData[internalCoinData.length - 1].price_close }} USD
             </span>
           </p>
         </section>
@@ -103,49 +104,31 @@
 </template>
 
 <script>
-const apiKey = "65A1C09F-1EE2-4DA0-AA42-80BF4138FDDD";
-// const apiKey2 = "C0B497A4-55D8-43A5-BA2E-BB06747C35E0";
 export default {
-  data() {
+  data () {
     return {
-      apiKey: apiKey,
-      apiLimit: 100,
-      amount: "",
-      coindata: {},
-      date: "2016-06-02",
-      date_current: new Date().toISOString().substr(0, 10),
-    };
+      internalCoinData: this.coindata,
+      internalAPIKey : this.apiKey,
+      internalAmount: this.amount,
+      internalDate: this.date,
+      internalDateCurrent: this.date_current,
+      internalAPILimit:this.apiLimit,
+    }
   },
-  computed: {},
   methods: {
-    async apiCall() {
-      await this.$http
-        .get(
-          "https://rest.coinapi.io/v1/ohlcv/BTC/USD/history?apikey=" +
-            this.apiKey +
-            "&period_id=1MTH&time_start=" +
-            this.date +
-            "T00:00:00" +
-            "&time_end=" +
-            this.date_current +
-            "T00:00:00&limit=" +
-            this.apiLimit +
-            "&include_empty_items=false"
-        )
-        .then((res) => {
-          this.coindata = res.body;
-        })
-        .catch((err) => {
-          if (err.status === 429) {
-            this.$emit('apiStatus',err.status)
-            this.$router.push({name:"customData"});
-          }
-        });
-    },
+    apiCall(){
+      this.$parent.apiCall();
+    }
   },
-  created() {
-    this.apiCall();
+  props: {
+    coindata:{},
+    apiKey: String,
+    amount:String,
+    date:String,
+    date_current:String,
+    apiLimit:String,
   },
+
 };
 </script>
   

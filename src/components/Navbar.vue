@@ -4,14 +4,19 @@
     <nav class="bg-primary py-4 w-auto">
       <ul class="flex justify-center">
         <li>
-          <router-link to="/"
-            v-if='apistat != 429'><h3 class="text-white border border-white p-1 rounded-md hover:bg-gray-50 hover:text-primary">Calculator</h3></router-link
+          <h3
+            class="text-white border border-white p-1 rounded-md hover:bg-gray-50 hover:text-primary" @click="navigateToHome"
           >
+            Calculator
+          </h3>
         </li>
         <li>
-          <router-link to="/customdata"
-            ><h3 class="text-white ml-4 border border-white p-1 rounded-md hover:bg-gray-50 hover:text-primary">Custom Data</h3></router-link
+          <h3
+            class="text-white ml-4 border border-white p-1 rounded-md hover:bg-gray-50 hover:text-primary"
+            @click="navigateToCustomData"
           >
+            Custom Data
+          </h3>
         </li>
       </ul>
     </nav>
@@ -21,16 +26,27 @@
 
 <script>
 export default {
-
-  props: {
-    apiStatus:{
-      type:Number,
-    }
-  },
+  props: ["apikey", "apiLimit", "amount", "date", "date_current","coindata"],
   data() {
-    return {
-      apistat:this.apiStatus,
-    }
+    return {};
+  },
+  methods: {
+    navigateToCustomData() {
+      this.$router.push({ name: "customData" });
+    },
+    navigateToHome() {
+      this.$router.push({
+        name: "home",
+        params: {
+          coindata:this.props.coindata,
+          apiKey: this.props.apikey,
+          apiLimit: this.props.apiLimit,
+          amount: this.props.amount,
+          date: this.props.date,
+          date_current: this.props.date_current,
+        },
+      });
+    },
   },
 };
 </script>
