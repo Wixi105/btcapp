@@ -92,7 +92,7 @@
               }}
               USD
             </span>
-            in profit today.
+            in profit today..
           </p>
           <p class="py-4">
             The current price of Bitcoin is
