@@ -34,6 +34,8 @@ span{
 
 }
 .lds-heart {
+  bottom: 50%;
+  right: 50%;
   display: inline-block;
   position: relative;
   width: 80px;

@@ -186,7 +186,7 @@ export default {
     },
   },
   created() {
-    this.apiCall();
+    // this.apiCall();
   },
 };
 </script>
