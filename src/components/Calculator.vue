@@ -56,6 +56,25 @@
         </section>
 
         <section id="data-view" v-if="coindata">
+             <p class="py-4" v-if="amount">
+            If you had bought
+            <span class="text-primary font-bold">{{ amount }} USD</span> worth
+            of Bitcoin at this time, you would have had
+            <span class="text-primary font-bold">
+              {{
+                (
+                  ((((coindata[coindata.length - 1].price_close -
+                    coindata[0].price_close) /
+                    coindata[0].price_close) *
+                    100) /
+                    100) *
+                  amount
+                ).toFixed(4)
+              }}
+              USD
+            </span>
+            in profit today.
+          </p>
           <p class="py-4">
             The price of bitcoin, on
             <span class="text-primary font-bold">{{ date }}</span>
@@ -75,25 +94,7 @@
               >{{ coindata[0].price_close }} USD</span
             >
           </p>
-          <p class="py-4" v-if="amount">
-            If you had bought
-            <span class="text-primary font-bold">{{ amount }} USD</span> worth
-            of Bitcoin at this time, you would have had
-            <span class="text-primary font-bold">
-              {{
-                (
-                  ((((coindata[coindata.length - 1].price_close -
-                    coindata[0].price_close) /
-                    coindata[0].price_close) *
-                    100) /
-                    100) *
-                  amount
-                ).toFixed(4)
-              }}
-              USD
-            </span>
-            in profit today.
-          </p>
+       
           <p class="py-4">
             The current price of Bitcoin is
             <span class="text-primary font-bold"

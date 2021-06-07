@@ -13,9 +13,6 @@ export default {};
 </script>
 
 <style scoped>
-span{
-  position: relative;
-}
 
 .spin {
     z-index:10;
@@ -29,11 +26,13 @@ span{
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 100%;
+    height: 50%;
     margin: 0 auto;
 
 }
 .lds-heart {
+   bottom: 50%;
+    right: 50%;
   display: inline-block;
   position: relative;
   width: 80px;
